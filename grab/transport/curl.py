@@ -76,9 +76,9 @@ def process_upload_items(items):
                 data.extend([pycurl.FORM_CONTENTTYPE, val.content_type])
             result.append((key, tuple(data)))
         elif isinstance(val, UploadFile):
-            data = [pycurl.FORM_FILE, val.path]
+            data = [pycurl.FORM_FILE, val.path.encode("utf-8")]
             if val.filename:
-                data.extend([pycurl.FORM_FILENAME, val.filename])
+                data.extend([pycurl.FORM_FILENAME, val.filename.encode("utf-8")])
             if val.content_type:
                 data.extend([pycurl.FORM_CONTENTTYPE, val.content_type])
             result.append((key, tuple(data)))
